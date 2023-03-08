@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
         <!--ロゴ-->
-        <div class="col-3">
+        <div class="col-5">
           <a class="navbar-brand" href="/"><i class="fas fa-birthday-cake"></i><span class= "header-text"> CatJournal</span></a>
         </div>
         <!--メニュー-->
@@ -13,17 +13,17 @@
                 <ul class="navbar-nav ml-auto">
                 <% if admin_signed_in? %>
                   <li class="nav-item">
-                    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-right' %>
+                    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-muted' %>
                   </li>
-                <% elsif customer_signed_in? %>
+                <% elsif user_signed_in? %>
                   <li class="nav-item">
-                    <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-right' %>
+                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-muted' %>
                   </li>
                 <% else %>
-                    <%= link_to '新規登録', new_customer_registration_path, class: 'nav-link text-right' %>
+                    <%= link_to '新規登録', new_user_registration_path, class: 'nav-link text-muted' %>
                   </li>
                   <li class="nav-item">
-                    <%= link_to 'ログイン', new_customer_session_path, class: 'nav-link text-right' %>
+                    <%= link_to 'ログイン', new_user_session_path, class: 'nav-link text-muted' %>
                   </li>
                 <% end %>
               </div>

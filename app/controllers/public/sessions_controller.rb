@@ -19,8 +19,16 @@ class Public::SessionsController < Devise::SessionsController
   #   super
   # end
 
+  def after_sign_in_path_for(resource)
+    my_page_path
+  end
+
+  def after_sign_out_path_for(resource)
+    user_session_path
+  end
+
   protected
-  
+
   # 退会ステータスの確認メソッド
   def user_state
     @user = User.find_by(email: params[:user][:email])
