@@ -1,0 +1,10 @@
+<h4>>> クイック投稿</h4>
+<%= form_with model: post do |f| %>
+  <h6>image</h6>
+    <%= f.file_field :image, accept: "image/*" %>
+  <h6>title</h6>
+    <%= f.text_field :title %>
+  <h6>body</h6>
+    <%= f.text_area :body %>
+    <%= f.submit '投稿' %>
+<% end %>
