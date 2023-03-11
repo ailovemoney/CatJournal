@@ -1,0 +1,31 @@
+<div class="container py-5">
+  <div class="row">
+    <!--左カラム-->
+    <div class="col-md-3">
+      <%= render 'public/users/user_profile', user: @users %>
+    </div>
+    <!--右のページ-->
+    <div class="col-md-8 offset-md-1">
+      <h4>post詳細ページ</h4>
+      <table>
+        <tr>
+          <td><%= @post.title%></td>
+          <td>
+            <% if @post.user == current_user %>
+              <%= link_to "編集", edit_post_path(@post.id) %>
+          </td>
+          <td>
+              <%= link_to "削除", post_path(@post.id), method: :delete %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3"><%= image_tag @post.get_image(500,500) %></td>
+        </tr>
+        <tr>
+          <td colspan="3"><%= @post.body %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

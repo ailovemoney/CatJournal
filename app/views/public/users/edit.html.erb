@@ -1,0 +1,9 @@
+<%= form_with model: @user do |f| %>
+  <h6>ユーザー名</h6>
+    <%= f.text_field :name %>
+  <h6>image</h6>
+    <%= f.file_field :profile_image, accept: "image/*" %>
+  <h6>自己紹介</h6>
+    <%= f.text_area :introduction %>
+    <%= f.submit '変更を保存' %>
+<% end %>

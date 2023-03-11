@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <th>画像</th>
+    <th>タイトル</th>
+    <th>投稿日</th>
+  </tr>
+  <% posts.each do |post| %>
+  <tr>
+    <td><%= image_tag post.get_image(100,100) %></td>
+    <td>
+      <%= link_to post_path(post.id) do %>
+        <%= post.title%>
+      <% end %>
+    </td>
+    <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
+  </tr>
+  <% end %>
+</table>

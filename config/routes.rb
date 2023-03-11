@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   # 管理者側のルーティング設定
   namespace :admin do
+    resources :users, only: [:index]
   end
 
   # ユーザー側のルーティング
