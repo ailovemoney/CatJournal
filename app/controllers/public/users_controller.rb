@@ -3,9 +3,6 @@
 class Public::UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
 
-  def create
-  end
-
   def show
     @user = current_user
     @post = Post.new
