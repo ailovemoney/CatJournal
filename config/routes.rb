@@ -11,10 +11,15 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
+  
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
 
   # 管理者側のルーティング設定
   namespace :admin do
-    resources :users, only: [:index]
+    resources :users, only: [:index, :edit, :update]
+    resources :posts, only: [:index]
   end
 
   # ユーザー側のルーティング

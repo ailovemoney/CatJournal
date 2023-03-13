@@ -1,3 +1,6 @@
+<div>
+  <%= flash[:notice] %>
+</div>
 <div class="container py-5">
   <div class="row">
     <!--左カラム-->
@@ -5,9 +8,12 @@
       <h4>>> プロフィール</h4>
       <%= render 'user_profile', user: @user %>
 
+      <!--ゲストログインの場合は非表示-->
+      <% if @user.name != "guestuser" %>
       <div>
         <%= link_to "プロフィール編集", edit_user_path(@user.id) %>
-      </div>
+      </div
+      <% end %>
 
       <h4>>> クイック投稿</h4>
       <%= render 'public/posts/post_form', post: @post %>
