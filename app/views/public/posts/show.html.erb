@@ -9,23 +9,8 @@
     <!--コメント表示-->
     <div>
       コメント件数 : <%= @post.post_comments.count %>
-      <table>
-      <% @post.post_comments.each do |post_comment| %>
-        <tr>
-          <th colspan="2"><%= image_tag post_comment.user.get_profile_image(50,50) %> <%= post_comment.user.name %></th>
-        </tr>
-        <tr>
-          <td colspan="2"><%= post_comment.comment %></td>
-        </tr>
-        <tr>
-          <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
-          <td>
-            <% if post_comment.user == current_user %>
-              <%= link_to "削除", post_post_comment_path(post_comment.post,post_comment), method: :delete %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
+      <table class="comments_area">
+        <%= render 'public/post_comments/comment-list', post: @post %>
       </table>
     </div>
 
@@ -45,8 +30,8 @@
               <%= link_to "削除", post_path(@post.id), method: :delete %>
             <% end %>
           </td>
+          <!--いいね機能-->
           <td class="favorite-<%= @post.id %>">
-            <!--いいね機能-->
             <%= render 'public/favorites/favorite-btn', post: @post %>
           </td>
         </tr>
@@ -59,11 +44,8 @@
       </table>
 
       <!--コメント送信フォーム-->
-      <div>
-        <%= form_with model: [@post, @post_comment] do |f| %>
-          <%= f.text_area :comment, rows: '5', placeholder: "コメントはこちら" %><br>
-          <%= f.submit "送信する"%>
-        <% end %>
+      <div class="new-comment">
+        <%= render 'public/post_comments/comment-form', post: @post, post_comment: @post_comment %>
       </div>
 
     </div>
