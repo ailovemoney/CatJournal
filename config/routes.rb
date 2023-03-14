@@ -11,9 +11,10 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
-
+  
+  # ゲストログインの記述
   devise_scope :user do
-    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
 
   # 管理者側のルーティング設定
@@ -28,7 +29,9 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update, :destroy]
     #get "users/my_page" => "users#show", as: "my_page"
     #get "users/my_page/edit" => "users#edit", as: "my_page_edit"
-    resources :posts, only: [:index, :create, :show, :edit, :update, :destroy]
+    resources :posts, only: [:index, :create, :show, :edit, :update, :destroy] do
+      resources :post_comments, only: [:create, :destroy]
+    end
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

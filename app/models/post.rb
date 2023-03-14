@@ -3,6 +3,8 @@ class Post < ApplicationRecord
   has_one_attached :image
   # userモデルと1:N (N側)
   belongs_to :user
+  # commentモデルと1:N (1側)
+  has_many :post_comments, dependent: :destroy
 
   # 投稿時に画像がない場合
   def get_image(width, height)
