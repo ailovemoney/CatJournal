@@ -2,6 +2,7 @@
   <div class="row">
     <!--左カラム-->
     <div class="col-md-3">
+      <!--プロフィールの部分テンプレート-->
       <%= render 'public/users/user_profile', user: @users %>
 
 
@@ -44,15 +45,20 @@
               <%= link_to "削除", post_path(@post.id), method: :delete %>
             <% end %>
           </td>
+          <td class="favorite-<%= @post.id %>">
+            <!--いいね機能-->
+            <%= render 'public/favorites/favorite-btn', post: @post %>
+          </td>
         </tr>
         <tr>
-          <td colspan="3"><%= image_tag @post.get_image(500,500) %></td>
+          <td colspan="4"><%= image_tag @post.get_image(500,500) %></td>
         </tr>
         <tr>
-          <td colspan="3"><%= @post.body %></td>
+          <td colspan="4"><%= @post.body %></td>
         </tr>
       </table>
 
+      <!--コメント送信フォーム-->
       <div>
         <%= form_with model: [@post, @post_comment] do |f| %>
           <%= f.text_area :comment, rows: '5', placeholder: "コメントはこちら" %><br>

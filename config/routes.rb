@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
-  
+
   # ゲストログインの記述
   devise_scope :user do
     post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
@@ -30,6 +30,10 @@ Rails.application.routes.draw do
     #get "users/my_page" => "users#show", as: "my_page"
     #get "users/my_page/edit" => "users#edit", as: "my_page_edit"
     resources :posts, only: [:index, :create, :show, :edit, :update, :destroy] do
+      # いいね機能のルーティング↓↓
+      # params[:id]不要なため、resourceは単数系で。
+      resource :favorites, only: [:create, :destroy]
+      # コメント機能のルーティング↓↓
       resources :post_comments, only: [:create, :destroy]
     end
   end

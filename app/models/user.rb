@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   # commentモデルと1:N (1側)
   has_many :post_comments, dependent: :destroy
+  # favorite(いいね機能)
+  has_many :favorites, dependent: :destroy
   # プロフィール画像を持たせる
   has_one_attached :profile_image
 
