@@ -8,7 +8,7 @@ class Post < ApplicationRecord
   # favorite(いいね機能)
   has_many :favorites, dependent: :destroy
   # ジャンル
-  belongs_to :ge
+  belongs_to :genre
 
   # 投稿時に画像がない場合の処理
   def get_image(width, height)
@@ -18,7 +18,7 @@ class Post < ApplicationRecord
     end
     image.variant(resize_to_limit: [width, height]).processed
   end
-  
+
   # いいね機能
   # ユーザーIDがFavaritedテーブル内に存在するか調べる記述
   # 存在していればtrue、なければfalseで返す。

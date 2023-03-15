@@ -5,5 +5,7 @@
     <%= f.text_field :title %>
   <h6>body</h6>
     <%= f.text_area :body %>
+  <h6>genre</h6>
+    <%= f.collection_select :genre_id, Genre.all, :id, :name, {include_blank: "--選択してください--"} %><br>
     <%= f.submit '投稿' %>
 <% end %>
