@@ -7,6 +7,8 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   # favorite(いいね機能)
   has_many :favorites, dependent: :destroy
+  # ジャンル
+  belongs_to :ge
 
   # 投稿時に画像がない場合の処理
   def get_image(width, height)

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index, :edit, :update]
     resources :posts, only: [:index]
+    resources :genres, only: [:index, :create, :edit, :update, :destroy]
   end
 
   # ユーザー側のルーティング
