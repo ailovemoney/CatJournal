@@ -27,9 +27,11 @@ Rails.application.routes.draw do
   # ユーザー側のルーティング
   scope module: :public do
     root to: "home#top"
+    get "search" => "searchs#saerch"
     resources :users, only: [:show, :edit, :update, :destroy]
     #get "users/my_page" => "users#show", as: "my_page"
     #get "users/my_page/edit" => "users#edit", as: "my_page_edit"
+    resources :genres, only: [:show] 
     resources :posts, only: [:index, :create, :show, :edit, :update, :destroy] do
       # いいね機能のルーティング↓↓
       # params[:id]不要なため、resourceは単数系で。

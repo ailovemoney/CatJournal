@@ -3,6 +3,7 @@ class Public::PostsController < ApplicationController
   def index
     @post = Post.new
     @posts = Post.all
+    @genres = Genre.all
   end
 
   def create

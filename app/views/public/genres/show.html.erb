@@ -1,0 +1,43 @@
+<div class="container py-5">
+  <div class="row">
+    <!--左カラム-->
+    <div class="col-md-6">
+      <h4>ジャンル検索結果</h4>
+      <%= @genre.name %>
+      <table>
+      <% if @genre.posts.exists? %>
+        <tr>
+          <th>画像</th>
+          <th>タイトル</th>
+          <th>投稿日</th>
+        </tr>
+        <% @genre.posts.each do |post| %>
+        <tr>
+          <td><%= image_tag post.get_image(100,100) %></td>
+          <td>
+            <%= link_to post_path(post.id) do %>
+              <%= post.title%>
+            <% end %>
+          </td>
+          <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <th colspan="3">検索結果０件</th>
+        </tr>
+      <% end %>
+      </table>
+    </div>
+    <!--右のページ-->
+    <div class="col-md-4 offset-md-1">
+      <!--ジャンル一覧-->
+      <h4>ジャンル一覧</h4>
+      <% @genres.each do |genre| %><br>
+      <%= link_to genre.name,  genre_path(genre.id) %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
