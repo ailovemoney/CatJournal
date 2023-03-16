@@ -1,0 +1,7 @@
+<h4>検索結果</h4>
+<!--もし検索結果が０件だった場合-->
+<% if @posts == [] %>
+  <h6>検索結果は0件です。</h6>
+<% else %>
+  <%= render '/public/posts/post_list', posts: @posts %>
+<% end %>

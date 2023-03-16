@@ -26,4 +26,9 @@ class Post < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
+    # ワード検索用の記述
+  def self.search(word)
+    Post.where(['title LIKE(?) OR body LIKE(?)', "%#{word}%", "%#{word}%"])
+  end
+
 end
