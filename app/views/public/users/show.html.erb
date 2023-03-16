@@ -12,16 +12,21 @@
       <% if @user.name != "guestuser" %>
       <div>
         <%= link_to "プロフィール編集", edit_user_path(@user.id) %>
-      </div
+      </div>
       <% end %>
+      
+      <!--いいね一覧へのリンク-->
+      <%= link_to "お気に入り記事", favorites_user_path(@user) %>
 
       <h4>>> クイック投稿</h4>
       <%= render 'public/posts/post_form', post: @post %>
     </div>
+
     <!--右のページ-->
     <div class="col-md-8 offset-md-1">
-      <h4>マイページ</h4>
+      <h4>最近投稿した記事</h4>
       <%= render 'public/posts/post_list', posts: @posts %>
     </div>
+
   </div>
 </div>

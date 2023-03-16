@@ -19,6 +19,15 @@ class Public::UsersController < ApplicationController
     redirect_to user_path(@user.id)
   end
 
+  def favorites
+    @user = User.find(params[:id])
+    # ユーザーidが、このユーザーの、いいねのレコードを全て取得する。
+    # pluckはFavoriteモデルからpost_idを取得
+    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
+    # ビューへ渡すための記述
+    @favorite_post = Post.find(favorites)
+  end
+
   private
 
   def user_params
