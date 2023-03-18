@@ -28,6 +28,17 @@ class Public::UsersController < ApplicationController
     @favorite_post = Post.find(favorites)
   end
 
+  def withdrawal
+    @user = current_user
+    # is_deletedカラムをtrueにする
+    @user.update(is_deleted: true)
+    # sessionは明示的に削除されるまでは消えないため、ここでリセットさせる。
+    # sessionはページ遷移しても以前に入力した情報を保持することができる機能。
+    reset_session
+    flash[:notice] = "退会処理を実行しました"
+    redirect_to root_path
+  end
+
   private
 
   def user_params
