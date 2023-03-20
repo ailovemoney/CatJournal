@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     root to: "home#top"
     # ワード検索用のルーティング↓↓
     get "search" => "searches#search"
+    # Userの退会用ルーティング↓↓
     get '/users/confirm' => 'users#confirm'
     patch '/users/withdrawal' => 'users#withdrawal', as: 'withdrawal'
     resources :users, only: [:show, :edit, :update, :destroy] do
@@ -36,9 +37,6 @@ Rails.application.routes.draw do
         get :favorites
       end
     end
-    
-    #get "users/my_page" => "users#show", as: "my_page"
-    #get "users/my_page/edit" => "users#edit", as: "my_page_edit"
     resources :genres, only: [:show]
     resources :posts, only: [:index, :create, :show, :edit, :update, :destroy] do
       # いいね機能のルーティング↓↓

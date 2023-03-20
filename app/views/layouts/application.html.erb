@@ -11,7 +11,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <header class="shadow-sm bg-darken-500 headercolor">
+  <header class="shadow-sm">
     <%= render "layouts/header" %>
   </header>
 
@@ -19,7 +19,7 @@
     <%= yield %>
   </body>
 
-  <footer>
+  <footer class="fixed-bottom">
     <%= render "layouts/footer" %>
   </footer>
 

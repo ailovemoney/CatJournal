@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+/* footerのリンクの色 */
+.admin-login {
+  color: #000;
+}
+
+.top-btn {
+  margin: 30px 30px;
+}

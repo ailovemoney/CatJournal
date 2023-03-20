@@ -1,25 +1,32 @@
-<div class="container">
-  <div class="row py-5">
-    <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
-      <h4>Cat Journal</h4><br>
-      <div class="btn-wrapper col-10 mx-auto">
-        <div class="row">
-          <%= link_to users_guest_sign_in_path, class: 'btn btn-secondary btn-sm btn-block mb-3 sign-in', method: :post do %>
-          ゲストログイン（閲覧用）
-          <% end %>
-        </div>
-        <div class="row">
-          <%= link_to new_user_session_path, class: 'btn btn-info btn-sm btn-block mb-3 sign-in' do %>
-          Log in
-          <% end %>
-        </div>
-        <div class="row">
-          <%= link_to new_user_registration_path, class: 'btn btn-success btn-sm btn-block sign-up' do %>
-          Sign up
-          <% end %>
-        </div>
-      </div>
+<div>
+  <%= flash[:notice] %>
+</div>
 
-    </div>
+<div class="container">
+  <div class="row pt-5 justify-content-center">
+    <h1>Welcome to <i class="fas fa-paw"></i><strong> Cat Journal</strong></h1>
+  </div>
+
+  <div class="row py-5 justify-content-center">
+    <%= link_to users_guest_sign_in_path, method: :post do %>
+        <button type="button" class="btn btn-secondary rounded-circle p-0 top-btn", style="width:15rem;height:15rem;">
+          <p>Guest Log in</p>
+          <i class="fas fa-paw"></i><br><br>
+          ゲストとしてログイン<br>(閲覧用)</button>
+    <% end %>
+
+    <%= link_to new_user_registration_path do %>
+        <button type="button" class="btn btn-info rounded-circle p-0 top-btn ", style="width:15rem;height:15rem;">
+          <p>Sign up</p>
+          <i class="fas fa-paw"></i><br><br>
+          新規登録をする</button>
+    <% end %>
+
+    <%= link_to new_user_session_path do %>
+        <button type="button" class="btn btn-success rounded-circle p-0 top-btn", style="width:15rem;height:15rem;">
+          <p>Log in</p>
+          <i class="fas fa-paw"></i><br><br>
+          ログインする</button>
+    <% end %>
   </div>
 </div>

@@ -2,31 +2,43 @@
   <%= flash[:notice] %>
 </div>
 
-<h2>Log in</h2>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-md-3">
 
-<!--form_forは非推奨のため、form_withに変更しました-->
-<%#= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-<%= form_with model: @user, url: user_session_path do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <button type="button" class="btn btn-success rounded-circle p-0 top-btn", style="width:10rem;height:10rem;">
+          <h2>Log in</h2></button>
     </div>
-  <% end %>
+    <div class="col-md-8 offset-md-1">
+      <!--form_forは非推奨のため、form_withに変更しました-->
+      <%#= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= form_with model: @user, url: user_session_path do |f| %>
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+        <div class="field">
+          <%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "current-password" %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+        <br>
+        <div class="actions">
+          <%= f.submit "Log in", class: "btn btn-outline-success" %>
+        </div>
+      <% end %>
+      <br>
+      <%= render "public/shared/links" %>
+
+    </div>
   </div>
-<% end %>
+</div>
 
-<%= render "public/shared/links" %>
+
