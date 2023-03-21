@@ -4,27 +4,35 @@
 <div class="container py-5">
   <div class="row">
     <!--左カラム-->
-    <div class="col-md-3">
-      <h4>>> プロフィール</h4>
+    <div class="col-md-3 mt-2">
+      <!--ユーザープロフィール-->
       <%= render 'user_profile', user: @user %>
 
-      <!--ゲストログインの場合は非表示-->
-      <% if @user.name != "guestuser" %>
-      <div>
-        <%= link_to "プロフィール編集", edit_user_path(@user.id) %>
+      <div class="edit-btn">
+        <!--ゲストログインの場合は非表示-->
+        <% if @user.name != "guestuser" %>
+          <!--編集ページへのリンク-->
+          <%= link_to edit_user_path(@user.id) do %>
+          <button type="button" class="btn btn-outline-secondary rounded-circle", style="width:3rem;height:3rem;">
+            <i class="fas fa-cog"></i>
+          </button>
+          <% end %>
+        <% end %>
+        <!--いいね一覧へのリンク-->
+        <%= link_to favorites_user_path(@user) do %>
+          <button type="button" class="btn btn-outline-danger rounded-circle", style="width:3rem;height:3rem;">
+            <i class="fas fa-heart"></i>
+          </button>
+        <% end %>
       </div>
-      <% end %>
-      
-      <!--いいね一覧へのリンク-->
-      <%= link_to "お気に入り記事", favorites_user_path(@user) %>
 
-      <h4>>> クイック投稿</h4>
+      <h4>Quick Post</h4>
       <%= render 'public/posts/post_form', post: @post %>
     </div>
 
     <!--右のページ-->
     <div class="col-md-8 offset-md-1">
-      <h4>最近投稿した記事</h4>
+      <h2>My Journal</h2>
       <%= render 'public/posts/post_list', posts: @posts %>
     </div>
 

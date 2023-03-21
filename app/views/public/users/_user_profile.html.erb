@@ -1,13 +1,17 @@
-<table>
+<div class="image">
+<%= image_tag user.get_profile_image(100,100), class: "profile_image" %>
+</div>
+<table class="table table-striped">
   <tr>
-    <td colspan="2"><%= image_tag user.get_profile_image(100,100) %></td>
+    <th>User</th>
   </tr>
   <tr>
-    <th>ユーザー名</th>
     <td><%= user.name %></td>
   </tr>
   <tr>
-    <th>自己紹介</th>
+    <th>introduction</th>
+  </tr>
+  <tr>
     <td><%= user.introduction %></td>
   </tr>
 </table>

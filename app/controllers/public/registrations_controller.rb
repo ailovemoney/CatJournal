@@ -43,11 +43,6 @@ class Public::RegistrationsController < Devise::RegistrationsController
     user_path(current_user.id)
   end
 
-# 要注意。これいる？？？
-  #def after_update_path_for(resource)
-  #  my_page_path
-  #end
-
   protected
 
     def configure_sign_up_params

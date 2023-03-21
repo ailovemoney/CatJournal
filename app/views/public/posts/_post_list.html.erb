@@ -1,18 +1,24 @@
-<table>
+<table class="table">
   <tr>
-    <th>画像</th>
-    <th>タイトル</th>
-    <th>投稿日</th>
+    <th>Post Date</th>
+    <th>Image</th>
+    <th>Title</th>
+    
+    <th>Like</th>
+    <th>comment</th>
   </tr>
   <% posts.each do |post| %>
   <tr>
+    <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
     <td><%= image_tag post.get_image(100,100) %></td>
     <td>
       <%= link_to post_path(post.id) do %>
         <%= post.title%>
       <% end %>
     </td>
-    <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
+    
+    <td>♥<%= post.favorites.count %></td>
+    <td class="text-center"><%= post.post_comments.count %></td>
   </tr>
   <% end %>
 </table>

@@ -1,3 +1,22 @@
 // Place all the styles related to the public/users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+ .profile_image {
+   border-radius: 50%;
+   width: 100px;
+   height: 100px;
+   object-fit: cover;
+ }
+
+ .image {
+   margin-bottom: 25px;
+ }
+
+.edit-btn {
+  margin-bottom: 25px;
+}
+
+.table-striped {
+  width: 90%;
+}
