@@ -18,6 +18,10 @@ class Post < ApplicationRecord
     end
     image.variant(resize_to_limit: [width, height]).processed
   end
+  
+  # 投稿する際に、空欄を禁止する。
+  validates :title, presence: true
+  validates :body, presence: true
 
   # いいね機能
   # ユーザーIDがFavaritedテーブル内に存在するか調べる記述
@@ -39,7 +43,7 @@ class Post < ApplicationRecord
     post_comments.exists?(user_id: user.id)
   end
 
-    # ワード検索用の記述
+  # ワード検索用の記述
   def self.search(word)
     Post.where(['title LIKE(?) OR body LIKE(?)', "%#{word}%", "%#{word}%"])
   end

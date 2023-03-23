@@ -1,6 +1,16 @@
 <div class="container py-5">
   <div class="row-md-4">
-    <h3>New Post</h3>
+    <h3 class="pb-3">New Post</h3>
+
+      <% if @post.errors.any? %>
+        <%= @post.errors.count %>件のエラーが発生しました。
+        <ul>
+          <% @post.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
     <div class="post-form">
     <%= render 'post_form', post: @post %>
     </div>
