@@ -9,7 +9,9 @@
     <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
     <td>
       <% if post_comment.user == current_user %>
-        <%= link_to "削除", post_post_comment_path(post_comment.post,post_comment), method: :delete, remote: true %>
+        <%= link_to post_post_comment_path(post_comment.post,post_comment), method: :delete, remote: true do %>
+          <i class="fas fa-trash-alt" style="color: #f00000;"></i>
+        <% end %>
       <% end %>
     </td>
   </tr>

@@ -38,7 +38,7 @@ Rails.application.routes.draw do
       end
     end
     resources :genres, only: [:show]
-    resources :posts, only: [:index, :create, :show, :edit, :update, :destroy] do
+    resources :posts do
       # いいね機能のルーティング↓↓
       # params[:id]不要なため、resourceは単数系で。
       resource :favorites, only: [:create, :destroy]

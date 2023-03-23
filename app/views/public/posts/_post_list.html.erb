@@ -3,7 +3,6 @@
     <th>Post Date</th>
     <th>Image</th>
     <th>Title</th>
-    
     <th>Like</th>
     <th>comment</th>
   </tr>
@@ -16,9 +15,21 @@
         <%= post.title%>
       <% end %>
     </td>
-    
-    <td>♥<%= post.favorites.count %></td>
-    <td class="text-center"><%= post.post_comments.count %></td>
+
+    <td>
+      <% if post.favorited_by?(current_user) %>
+        <i class="fas fa-heart" style="color: #d20423;"></i> <%= post.favorites.count %>
+      <% else %>
+        <i class="fas fa-heart" style="color: #b4b1b1;"></i> <%= post.favorites.count %>
+      <% end %>
+    </td>
+    <td class="text-center">
+      <% if post.comment_by?(current_user) %>
+        <i class="fas fa-comment-dots"></i> <%= post.post_comments.count %>
+      <% else %>
+        <i class="far fa-comment"></i> <%= post.post_comments.count %>
+      <% end %>
+    </td>
   </tr>
   <% end %>
 </table>

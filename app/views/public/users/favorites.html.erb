@@ -1,24 +1,58 @@
-<h4>いいね一覧</h4>
-<% if @favorite_post.present? %>
-  <table>
-    <tr>
-      <th>画像</th>
-      <th>タイトル</th>
-      <th>投稿日</th>
-    </tr>
-    <% @favorite_post.each do |post| %>
-    <tr>
-      <td><%= image_tag post.get_image(100,100) %></td>
-      <td>
-        <%= link_to post_path(post.id) do %>
-          <%= post.title%>
-        <% end %>
-      </td>
-      <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
-    </tr>
-    <% end %>
-  </table>
+<div class="container py-5">
+  <div class="row">
+    <!--左側のページ-->
+    <div class="col-md-2">
+      <button type="button" class="btn btn-danger rounded-circle p-0 top-btn", style="width:10rem;height:10rem;">
+        <h2>Likes</h2>
+      </button>
+    </div>
+    <!--右側のページ-->
+    <div class="col-md-9 offset-md-1 py-4">
+      <% if @favorite_post.present? %>
+        <table class="table">
+          <tr>
+            <th>Post Date</th>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Like</th>
+            <th>comment</th>
+          </tr>
+          <% @favorite_post.each do |post| %>
+          <tr>
+                <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
+                <td><%= image_tag post.get_image(100,100) %></td>
+                <td>
+                  <%= link_to post_path(post.id) do %>
+                    <%= post.title%>
+                  <% end %>
+                </td>
+                <td>
+                  <!--いいねしている場合は赤いハート、していない場合は灰色ハート-->
+                  <% if post.favorited_by?(current_user) %>
+                    <i class="fas fa-heart" style="color: #d20423;"></i> <%= post.favorites.count %>
+                  <% else %>
+                    <i class="fas fa-heart" style="color: #b4b1b1;"></i> <%= post.favorites.count %>
+                  <% end %>
+                </td>
+                <td class="text-center">
+                  <% if post.comment_by?(current_user) %>
+                    <i class="fas fa-comment-dots"></i> <%= post.post_comments.count %>
+                  <% else %>
+                    <i class="far fa-comment"></i> <%= post.post_comments.count %>
+                  <% end %>
+                </td>
+              </tr>
+          <% end %>
+        </table>
+      <% else %>
+        まだいいねをしていません。
+      <% end %>
+      <div>
+        <%= link_to 'Back', :back %> | <%= link_to 'Journals', posts_path %>
+      </div>
+    </div>
 
-<% else %>
-  まだいいねをしていません
-<% end %>
+  </div>
+</div>
+
+

@@ -1,7 +1,29 @@
-<h4>検索結果</h4>
-<!--もし検索結果が０件だった場合-->
-<% if @posts == [] %>
-  <h6>検索結果は0件です。</h6>
-<% else %>
-  <%= render '/public/posts/post_list', posts: @posts %>
-<% end %>
+<div class="container pt-3 pb-5">
+  <div class="row mb-5 justify-content-center">
+    <!--検索フォーム-->
+    <%= render 'public/searches/search' %>
+  </div>
+  <div class="row">
+    <!--左側のページ-->
+    <div class="col-md-2">
+      <button type="button" class="btn btn-info rounded-circle p-0 top-btn", style="width:10rem;height:10rem;">
+        <h2>Result</h2>
+      </button>
+    </div>
+    <!--右側のページ-->
+    <div class="col-md-9 offset-md-1 py-4">
+      <!--もし検索結果が０件だった場合-->
+      <% if @posts == [] %>
+        <div class="my-5">
+          <h6>検索結果は0件です。</h6>
+        </div>
+      <% else %>
+        <%= render '/public/posts/post_list', posts: @posts %>
+      <% end %>
+      <div>
+        <%= link_to 'Back', :back %> | <%= link_to 'Journals', posts_path %>
+      </div>
+    </div>
+
+  </div>
+</div>

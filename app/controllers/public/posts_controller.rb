@@ -1,8 +1,14 @@
 class Public::PostsController < ApplicationController
 
+  def new
+    @post = Post.new
+  end
+
   def index
     @post = Post.new
-    @posts = Post.all
+    # 新着順にソートをかける
+    # orderは投稿データの順序、descは並び替えの降順
+    @posts = Post.all.order(created_at: :desc)
     @genres = Genre.all
   end
 
@@ -12,7 +18,7 @@ class Public::PostsController < ApplicationController
     if @post.save!
       redirect_to user_path(current_user.id)
     else
-      # render 'new'
+      render 'new'
     end
 
   end

@@ -22,8 +22,21 @@ class Post < ApplicationRecord
   # いいね機能
   # ユーザーIDがFavaritedテーブル内に存在するか調べる記述
   # 存在していればtrue、なければfalseで返す。
+  # 管理者でログインしている場合にエラーが出るのでif文で条件追記。
   def favorited_by?(user)
-    favorites.exists?(user_id: user.id)
+    # userログインをしているかどうかの
+    if user.present?
+      favorites.exists?(user_id: user.id)
+    else
+      # userログインしていない場合は無条件にfalseを返します。
+      false
+    end
+  end
+
+  # コメント機能
+  # コメントしている場合、一覧でアイコンを変えるための
+  def comment_by?(user)
+    post_comments.exists?(user_id: user.id)
   end
 
     # ワード検索用の記述

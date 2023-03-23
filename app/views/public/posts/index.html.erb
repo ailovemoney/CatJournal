@@ -5,18 +5,16 @@
   </div>
   <div class="row">
     <!--左カラム-->
-    <div class="col-md-6">
-      <h4>投稿一覧</h4><br>
-      <!--一覧リストの部分テンプレート-->
-      <%= render 'post_list', posts: @posts %>
+    <div class="col-md-2">
+      <!--ジャンル一覧-->
+      <%= render 'public/genres/genre-list', genres: @genres %>
     </div>
     <!--右のページ-->
-    <div class="col-md-4 offset-md-1">
-      <!--ジャンル一覧-->
-      <h4>ジャンル一覧</h4>
-      <% @genres.each do |genre| %><br>
-      <%= link_to genre.name,  genre_path(genre.id) %>
-      <% end %>
+    <div class="col-md-9 offset-md-1">
+      <h2>Journal</h2><br>
+      <!--一覧リストの部分テンプレート-->
+      <%= render 'post_list', posts: @posts %>
+
     </div>
   </div>
 </div>

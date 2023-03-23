@@ -6,7 +6,9 @@ class Public::UsersController < ApplicationController
   def show
     @user = current_user
     @post = Post.new
-    @posts = @user.posts
+    # 新着順にソートをかける
+    # orderは投稿データの順序、descは並び替えの降順
+    @posts = @user.posts.order(created_at: :desc)
   end
 
   def edit

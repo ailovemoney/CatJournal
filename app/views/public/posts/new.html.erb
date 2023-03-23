@@ -1,9 +1,9 @@
 <div class="container py-5">
   <div class="row-md-4">
-    <h2>Edit</h2>
+    <h3>New Post</h3>
     <div class="post-form">
     <%= render 'post_form', post: @post %>
     </div>
-    <%= link_to 'Back', post_path(@post) %>
+    <%= link_to 'Back', user_path(current_user.id) %>
   </div>
 </div>

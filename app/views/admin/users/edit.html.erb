@@ -1,24 +1,30 @@
-<div class="container py-5">
+<div class="container pt-5 pb-5">
   <div class="row">
-    <div class="col">
-      <h4>ユーザー編集</h4>
+    <!--左側のページ-->
+    <div class="col-md-2">
+      <button type="button" class="btn btn-info rounded-circle p-0 top-btn", style="width:10rem;height:10rem;">
+        <h2>Usres<br>edit</h2>
+      </button>
+    </div>
+    <!--右側のページ-->
+    <div class="col-md-9 offset-md-1 py-4">
       <table>
-        <%= form_with model: @user, url: admin_user_path(@user), method: :patch  do |f| %>
+      <%= form_with model: @user, url: admin_user_path(@user), method: :patch  do |f| %>
         <tr>
-          <th>登録日</th>
-          <td><%= @user.created_at.strftime('%Y/%m/%d') %></td>
+          <th class="p-3">登録日</th>
+          <td class="p-3"><%= @user.created_at.strftime('%Y/%m/%d') %></td>
         </tr>
         <tr>
-          <th>ユーザー名</th>
-          <td><%= f.text_field :name %></td>
+          <th class="p-3">ユーザー名</th>
+          <td class="p-3"><%= f.text_field :name %></td>
         </tr>
         <tr>
-          <th>メールアドレス</th>
-          <td><%= f.text_field :email %></td>
+          <th class="p-3">メールアドレス</th>
+          <td class="p-3"><%= f.text_field :email %></td>
         </tr>
         <tr>
-          <th>ステータス</th>
-          <td>
+          <th class="p-3">ステータス</th>
+          <td class="p-3">
             <%= f.radio_button :is_deleted, :false, checked: true %>
             <%= f.label :is_deleted_false, '有効　', {value: :false} %>
             <%= f.radio_button :is_deleted, :true %>
@@ -26,10 +32,14 @@
           </td>
         </tr>
         <tr>
-          <td colspan="2"><%= f.submit '変更を保存', class: 'btn btn-success' %></td>
+          <th class="p-3"><%= f.submit '変更を保存', class: 'btn btn-success' %></th>
+          <th class="p-3"></th>
         </tr>
-        <% end %>
+      <% end %>
       </table>
+      <div class="m-3">
+         <%= link_to 'Back', :back %>
+      </div>
     </div>
   </div>
 </div>

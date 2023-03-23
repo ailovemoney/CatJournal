@@ -1,0 +1,8 @@
+<div class="text-center">
+  <h4>Genre List</h4>
+  <i class="fas fa-paw"></i>
+  <h6>What do you want to check?</h6>
+</div>
+<% genres.each do |genre| %><br>
+<%= link_to genre.name,  genre_path(genre.id) %>
+<% end %>

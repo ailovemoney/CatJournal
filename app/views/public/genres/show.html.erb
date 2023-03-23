@@ -1,41 +1,60 @@
 <div class="container py-5">
   <div class="row">
-    <!--左カラム-->
-    <div class="col-md-6">
-      <h4>ジャンル検索結果</h4>
-      <%= @genre.name %>
-      <table>
+    <!--左側のページ-->
+    <div class="col-md-2">
+      <!--ジャンル一覧-->
+      <%= render 'public/genres/genre-list', genres: @genres %>
+    </div>
+
+    <!--右のページ-->
+    <div class="col-md-9 offset-md-1">
+      <h2>Search Results</h2>
+      <div class="mt-2 mb-4">
+        >> <%= @genre.name %>
+      </div>
+      <table class="table">
+      <!--ジャンルに紐づいた検索結果を表示させる-->
       <% if @genre.posts.exists? %>
         <tr>
-          <th>画像</th>
-          <th>タイトル</th>
-          <th>投稿日</th>
+          <th>Post Date</th>
+          <th>Image</th>
+          <th>Title</th>
+          <th>Like</th>
+          <th>comment</th>
         </tr>
         <% @genre.posts.each do |post| %>
         <tr>
+          <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
           <td><%= image_tag post.get_image(100,100) %></td>
           <td>
             <%= link_to post_path(post.id) do %>
               <%= post.title%>
             <% end %>
           </td>
-          <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
+          <td>
+            <!--いいねしている場合は赤いハート、していない場合は灰色ハート-->
+            <% if post.favorited_by?(current_user) %>
+              <i class="fas fa-heart" style="color: #d20423;"></i> <%= post.favorites.count %>
+            <% else %>
+              <i class="fas fa-heart" style="color: #b4b1b1;"></i> <%= post.favorites.count %>
+            <% end %>
+          </td>
+          <td class="text-center">
+            <% if post.comment_by?(current_user) %>
+              <i class="fas fa-comment-dots"></i> <%= post.post_comments.count %>
+            <% else %>
+              <i class="far fa-comment"></i> <%= post.post_comments.count %>
+            <% end %>
+          </td>
         </tr>
         <% end %>
+      <!--登録がひとつもない場合に表示させるページ-->
       <% else %>
         <tr>
           <th colspan="3">検索結果０件</th>
         </tr>
       <% end %>
       </table>
-    </div>
-    <!--右のページ-->
-    <div class="col-md-4 offset-md-1">
-      <!--ジャンル一覧-->
-      <h4>ジャンル一覧</h4>
-      <% @genres.each do |genre| %><br>
-      <%= link_to genre.name,  genre_path(genre.id) %>
-      <% end %>
     </div>
   </div>
 </div>
