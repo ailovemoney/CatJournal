@@ -5,14 +5,18 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!, except: [:top], if: :user_url
   before_action :authenticate_admin!, if: :admin_url
 
+  # ユーザーが送信したHTTPリクエストのパスが"/admin"を含んでいる場合はfalse
    def user_url
      if request.fullpath.include?("/admin")
-       print('---------')
-       print('user false')
+      # URLに"/admin"が含まれている場合の処理
+      # ターミナルで確認用の記述
+      # print('---------')
+      # print('user false')
        false
      else
-       print('---------')
-       print('user true')
+      # URLに"/admin"が含まれていない場合の
+      # print('---------')
+      # print('user true')
        request.fullpath.include?("/user") ? true : false
      end
    end
