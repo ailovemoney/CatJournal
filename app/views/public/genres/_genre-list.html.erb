@@ -4,5 +4,5 @@
   <h6>What do you want to check?</h6>
 </div>
 <% genres.each do |genre| %><br>
-<%= link_to genre.name,  genre_path(genre.id) %>
+<%= link_to genre.name,  genre_path(genre.id), class: "text-decoration-none text-info font-weight-bold" %>
 <% end %>

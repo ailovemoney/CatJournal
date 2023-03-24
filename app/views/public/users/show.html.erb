@@ -46,6 +46,7 @@
       </div>
       <!--投稿一覧-->
       <%= render 'public/posts/post_list', posts: @posts %>
+      <%= paginate @posts %>
     </div>
 
   </div>

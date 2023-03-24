@@ -8,6 +8,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new
     # 新着順にソートをかける
     # orderは投稿データの順序、descは並び替えの降順
+    # pageはkaminariでページネーションをかけています
     @posts = Post.page(params[:page]).order(created_at: :desc)
     @genres = Genre.all
   end

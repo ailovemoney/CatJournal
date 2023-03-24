@@ -14,8 +14,28 @@
   margin-top: 10px;
 }
 
+// 投稿一覧の表示される画像のサイズ変更
 .list_image {
   width: 120px;
-   height: 80px;
-   object-fit: cover;
+  height: 80px;
+  object-fit: cover;
+}
+
+// ページネーションのスタイル変更
+.pagination>li>a {
+  border: none;
+  color: #696969;
+}
+
+.pagination>.active>a {
+  border-radius: 15px;
+}
+
+.pagination>li>a:hover {
+  border-radius: 15px;
+}
+
+.pagination {
+  margin-top: 50px;
+  justify-content: center;
 }

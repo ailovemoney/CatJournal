@@ -8,7 +8,7 @@ class Public::UsersController < ApplicationController
     @post = Post.new
     # 新着順にソートをかける
     # orderは投稿データの順序、descは並び替えの降順
-    @posts = @user.posts.order(created_at: :desc)
+    @posts = @user.posts.page(params[:page]).order(created_at: :desc)
   end
 
   def edit
