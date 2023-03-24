@@ -14,7 +14,7 @@
       <h2>Journal</h2><br>
       <!--一覧リストの部分テンプレート-->
       <%= render 'post_list', posts: @posts %>
-
+      <%= paginate @posts %>
     </div>
   </div>
 </div>
