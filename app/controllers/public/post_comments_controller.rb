@@ -8,6 +8,8 @@ class Public::PostCommentsController < ApplicationController
     comment.save
     # redirect_to post_path(post) ←非同期通信のため削除
     @post_comment = PostComment.new
+    # 通知機能。コメントをしたタイミングで通知レコードを作成する
+    @post.save_notification_comment!(current_user, comment.id)
   end
 
   def destroy

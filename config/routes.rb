@@ -45,6 +45,8 @@ Rails.application.routes.draw do
       # コメント機能のルーティング↓↓
       resources :post_comments, only: [:create, :destroy]
     end
+    # 通知機能
+    resources :notifications, only: [:index]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

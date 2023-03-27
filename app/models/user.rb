@@ -14,6 +14,9 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   # プロフィール画像を持たせる
   has_one_attached :profile_image
+  # 通知機能。activeは自分からの通知、passiveは相手からの通知。
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
   # ゲストログインのユーザー設定
   def self.guest
@@ -30,6 +33,17 @@ class User < ApplicationRecord
       profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     profile_image
+  end
+  
+  def create_notification_follow!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
   end
 
 end
