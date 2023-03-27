@@ -15,7 +15,7 @@
           <td class="py-2"><%= f.text_field :name %></td>
         </tr>
         <tr>
-          <td class="text-right"><%= f.submit '投稿', class: "btn btn-success" %></td>
+          <td class="text-right"><%= f.submit '追加', class: "btn btn-success" %></td>
         </tr>
       <% end %>
       </table>
@@ -25,12 +25,14 @@
       <table class="table">
         <tr>
           <th>ジャンル名</th>
+          <th>登録件数</th>
           <th>編集</th>
           <th>削除</th>
         </tr>
         <% @genres.each do |genre| %>
         <tr>
-          <td><%= genre.name %></td>
+          <td><%= link_to "#{genre.name}", genre_path(genre.id), class: "text-decoration-none text-info font-weight-bold" %></td>
+          <td><%= genre.posts.count %> 件</td>
           <td>
             <%= link_to edit_admin_genre_path(genre.id) do %>
               <i class="fas fa-edit" style="color: #06982b;"></i>

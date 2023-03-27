@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :is_matching_login_user_post, only: [:edit, :update]
 
   def new
     @post = Post.new
@@ -22,7 +23,6 @@ class Public::PostsController < ApplicationController
     else
       render 'new'
     end
-
   end
 
   def show
@@ -52,6 +52,14 @@ class Public::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :body, :image, :genre_id)
+  end
+
+  # ユーザーがURLから他ユーザーの投稿編集ページに飛ぼうとしても飛べないようにする記述
+  def is_matching_login_user_post
+    post = Post.find(params[:id])
+    unless post.user_id == current_user.id
+      redirect_to posts_path
+    end
   end
 
 end

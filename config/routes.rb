@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   # 管理者側のルーティング設定
   namespace :admin do
     resources :users, only: [:index, :edit, :update]
-    resources :posts, only: [:index]
+    resources :posts, only: [:index, :edit, :update, :destroy]
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
   end
 

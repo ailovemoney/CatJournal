@@ -22,8 +22,8 @@
                 <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
                 <td><%= image_tag post.get_image(100,100) %></td>
                 <td>
-                  <%= link_to post_path(post.id) do %>
-                    <%= post.title%>
+                  <%= link_to post_path(post.id), class: "text-decoration-none text-info font-weight-bold" do %>
+                    <%= post.title %>
                   <% end %>
                 </td>
                 <td>
@@ -48,7 +48,7 @@
         まだいいねをしていません。
       <% end %>
       <div>
-        <%= link_to 'Back', :back %> | <%= link_to 'Journals', posts_path %>
+        <%= link_to 'Back', :back, class: "text-decoration-none text-info font-weight-bold" %> | <%= link_to 'Journals', posts_path, class: "text-decoration-none text-info font-weight-bold" %>
       </div>
     </div>
 
