@@ -1,47 +1,28 @@
-<% @notifications.where.not(visitor_id: current_user.id).each do |notification|%>  
+<% notifications.where.not(visitor_id: current_user.id).each do |notification| %>
   <% visitor = notification.visitor %>
   <% visited = notification.visited %>
-  <div class="col-md-6 mx-auto">
+  <div class="col-md-10 mx-auto">
     <div class="form-inline">
+      <!--コメントもしくはいいねしたユーザーのアイコンと名前表示-->
       <span>
-        <%= link_to user_path(visitor) do %>
-          <%= image_tag visitor.get_profile_image %>
-          <strong>
-            <%= visitor.name %>
-          </strong>
-        <% end %>
-        さんが
+        <%= image_tag visitor.get_profile_image, class: "notification_image" %>
+        <strong>　<%= visitor.name %></strong>さんが
       </span>
-  
-      <% case notification.action %>
-      <% when 'follow' then %>
-        <%= "あなたをフォローしました" %>
-      <% when 'like' then %>
-        <%= link_to 'あなたの投稿', notification.post, style: "font-weight: bold;" %>
+
+      <% if notification.action == 'like' %>
+        <%= link_to 'あなたの投稿', notification.post, style: "font-weight: bold;", class: "text-decoration-none text-info font-weight-bold" %>
         <%= "にいいねしました" %>
-      <% when 'comment' then %>
-        <% if notification.post.user_id == visited.id %>
-          <%= link_to "あなたの投稿", notification.post, style: "font-weight: bold;" %>
-        <% else %>
-          <span>
-            <%= link_to post_path(notification.post) do %>
-              <%= image_tag user.get_profile_image, avatar_url(notification.post.user).to_s, class: "icon_mini" %>
-              <strong>
-                <%= notification.post.user.name + 'さんの投稿' %>
-              </strong>
-            <% end %>
-          </span>
-        <% end %>
+      <% elsif notification.action == 'post_comment' %>
+        <%= link_to "あなたの投稿", notification.post, style: "font-weight: bold;", class: "text-decoration-none text-info font-weight-bold" %>
         <%= "にコメントしました" %>
-        <p class="text-muted mb-0">
-          <%= Post_comment.find_by(id: notification.post_comment_id)&.post_comment %>
-        </p>
       <% end %>
     </div>
-  
-    <div class="small text-muted text-right">
-      <%= time_ago_in_words(notification.created_at).upcase %>
-    </div>
-    <hr>
+
+  <!--いつ通知が来たか時間を表示-->
+  <div class="small text-muted text-right">
+    <%= time_ago_in_words(notification.created_at).upcase %>
   </div>
-  <%end%>
+  <hr>
+  </div>
+<% end %>
+
