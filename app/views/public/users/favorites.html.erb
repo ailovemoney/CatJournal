@@ -21,7 +21,7 @@
           <tr>
                 <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
                 <td><%= image_tag post.get_image(100,100) %></td>
-                <td>
+                <td class="text-truncate" style="max-width: 300px;">
                   <%= link_to post_path(post.id), class: "text-decoration-none text-info font-weight-bold" do %>
                     <%= post.title %>
                   <% end %>
