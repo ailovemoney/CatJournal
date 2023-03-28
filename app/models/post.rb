@@ -20,7 +20,7 @@ class Post < ApplicationRecord
     end
     image.variant(resize_to_limit: [width, height]).processed
   end
-  
+
   # 投稿する際に、空欄を禁止する。
   validates :title, presence: true
   validates :body, presence: true
@@ -42,14 +42,18 @@ class Post < ApplicationRecord
   # コメント機能
   # コメントしている場合、一覧でアイコンを変えるための
   def comment_by?(user)
-    post_comments.exists?(user_id: user.id)
+    if user.present?
+      post_comments.exists?(user_id: user.id)
+    else
+      false
+    end
   end
 
   # ワード検索用の記述
   def self.search(word)
     Post.where(['title LIKE(?) OR body LIKE(?)', "%#{word}%", "%#{word}%"])
   end
-  
+
   # 通知機能（いいね）
   def create_notification_like!(current_user)
     # すでに「いいね」されているか検索
@@ -70,7 +74,7 @@ class Post < ApplicationRecord
       notification.save if notification.valid?
     end
   end
-  
+
   # 通知機能（コメント）
   def create_notification_post_comment!(current_user, post_comment_id)
     # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
