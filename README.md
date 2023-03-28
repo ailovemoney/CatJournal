@@ -27,7 +27,7 @@ Twitter、TikTok、Instagramなど写真を投稿するSNSは多数存在する�
 
 ## 設計書
 - テーブル定義書
-https://docs.google.com/spreadsheets/d/1YRxOivLvqEAFoLHPPCdeVxT9GkYT_Gg_Bh3GIpBX7IQ/edit#gid=1980832249
+https://docs.google.com/spreadsheets/d/1YRxOivLvqEAFoLHPPCdeVxT9GkYT_Gg_Bh3GIpBX7IQ/edit#gid=1373217982
 - ER図
 https://app.diagrams.net/#G16XTOPckPOVeOijwb-i1snl0U4Bl6C3-6
 
