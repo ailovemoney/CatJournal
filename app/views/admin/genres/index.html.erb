@@ -6,8 +6,8 @@
         <h2>Genre</h2>
       </button>
       <!--ジャンル新規作成フォーム-->
-      <table class="py-3">
       <%= form_with model: @genre, url: admin_genres_path do |f| %>
+      <table class="py-3">
         <tr>
           <td class="pt-3 text-right">New Genre</td>
         </tr>
@@ -17,8 +17,8 @@
         <tr>
           <td class="text-right"><%= f.submit '追加', class: "btn btn-success" %></td>
         </tr>
-      <% end %>
       </table>
+      <% end %>
     </div>
     <!--右側のページ-->
     <div class="col-md-9 offset-md-1 py-4">
