@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :edit, :update]
     resources :posts, only: [:index, :edit, :update, :destroy]
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
+    resources :post_comments, only: [:index, :destroy]
   end
 
   # ユーザー側のルーティング

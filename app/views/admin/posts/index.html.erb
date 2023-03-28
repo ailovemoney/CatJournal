@@ -5,6 +5,10 @@
       <button type="button" class="btn btn-warning rounded-circle p-0 top-btn", style="width:10rem;height:10rem;">
         <h2>Posts</h2>
       </button>
+      <div class="py-5 text-right">
+        コメント編集は<br>
+        <%= link_to "こちら", admin_post_comments_path, class: "text-decoration-none text-info font-weight-bold" %>
+      </div>
     </div>
     <!--右側のページ-->
     <div class="col-md-9 offset-md-1 py-4">
@@ -18,7 +22,9 @@
         <% @posts.each do |post| %>
         <tr>
           <th><%= post.user.created_at.strftime('%Y/%m/%d') %></th>
-          <th class="text-truncate" style="max-width: 250px;"><%= link_to "#{post.title}", post_path(post.id), class: "text-decoration-none text-info font-weight-bold" %></th>
+          <th class="text-truncate" style="max-width: 250px;">
+            <%= link_to "#{post.title}", post_path(post.id), class: "text-decoration-none text-info font-weight-bold" %>
+          </th>
           <th><%= post.user.name %></th>
           <th>
             <%= link_to admin_post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
