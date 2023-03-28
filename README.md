@@ -26,7 +26,10 @@ Twitter、TikTok、Instagramなど写真を投稿するSNSは多数存在する�
 - 猫飼い同士・猫好き同士の友達が欲しいとき
 
 ## 設計書
-準備中です。
+- テーブル定義書
+https://docs.google.com/spreadsheets/d/1YRxOivLvqEAFoLHPPCdeVxT9GkYT_Gg_Bh3GIpBX7IQ/edit#gid=1980832249
+- ER図
+https://app.diagrams.net/#G16XTOPckPOVeOijwb-i1snl0U4Bl6C3-6
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -34,6 +37,3 @@ Twitter、TikTok、Instagramなど写真を投稿するSNSは多数存在する�
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-
-## 使用素材
-使用検討中です。
