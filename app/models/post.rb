@@ -1,15 +1,9 @@
 class Post < ApplicationRecord
-  # image(画像)を持たせる
   has_one_attached :image
-  # userモデルと1:N (N側)
   belongs_to :user
-  # commentモデルと1:N (1側)
   has_many :post_comments, dependent: :destroy
-  # favorite(いいね機能)
   has_many :favorites, dependent: :destroy
-  # ジャンル
   belongs_to :genre
-  # 通知機能
   has_many :notifications, dependent: :destroy
 
   # 投稿時に画像がない場合の処理
