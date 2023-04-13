@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     # Userの退会用ルーティング↓↓
     get '/users/confirm' => 'users#confirm'
     patch '/users/withdrawal' => 'users#withdrawal', as: 'withdrawal'
-    resources :users, only: [:show, :edit, :update, :destroy] do
+    resources :users, only: [:index, :show, :edit, :update, :destroy] do
       member do
         get :favorites
       end

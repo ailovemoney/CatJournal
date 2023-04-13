@@ -3,9 +3,15 @@
 class Public::UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
   before_action :is_matching_login_user, only: [:edit, :update]
-
-  def show
+  
+  def index
+    @users = User.page(params[:page]).order(created_at: :desc)
     @user = current_user
+    @post = Post.new
+  end
+  
+  def show
+    @user = User.find(params[:id])
     @post = Post.new
     # 新着順にソートをかける
     # orderは投稿データの順序、descは並び替えの降順

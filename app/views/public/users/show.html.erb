@@ -9,20 +9,22 @@
       <%= render 'user_profile', user: @user %>
 
       <div class="edit-btn">
-        <!--ゲストログインの場合は非表示-->
-        <% if @user.name != "guestuser" %>
-          <!--編集ページへのリンク-->
-          <%= link_to edit_user_path(@user.id) do %>
-          <button type="button" class="btn btn-outline-secondary rounded-circle", style="width:3rem;height:3rem;">
-            <i class="fas fa-cog"></i>
-          </button>
+        <% if @post.user == current_user %>
+          <!--ゲストログインの場合は非表示-->
+          <% if @user.name != "guestuser" %>
+            <!--編集ページへのリンク-->
+            <%= link_to edit_user_path(@user.id) do %>
+            <button type="button" class="btn btn-outline-secondary rounded-circle", style="width:3rem;height:3rem;">
+              <i class="fas fa-cog"></i>
+            </button>
+            <% end %>
           <% end %>
-        <% end %>
-        <!--いいね一覧へのリンク-->
-        <%= link_to favorites_user_path(@user) do %>
-          <button type="button" class="btn btn-outline-danger rounded-circle", style="width:3rem;height:3rem;">
-            <i class="fas fa-heart"></i>
-          </button>
+          <!--いいね一覧へのリンク-->
+          <%= link_to favorites_user_path(@user) do %>
+            <button type="button" class="btn btn-outline-danger rounded-circle", style="width:3rem;height:3rem;">
+              <i class="fas fa-heart"></i>
+            </button>
+          <% end %>
         <% end %>
       </div>
 
@@ -39,8 +41,10 @@
         </div>
         <div class="col text-right">
           <!--新規投稿ページへのリンク-->
-          <%= link_to new_post_path do %>
-            <button type="button" class="btn btn-info rounded-circle p-0", style="width:2rem;height:2rem;">＋</button>
+          <% if @post.user == current_user %>
+            <%= link_to new_post_path do %>
+              <button type="button" class="btn btn-info rounded-circle p-0", style="width:2rem;height:2rem;">＋</button>
+            <% end %>
           <% end %>
         </div>
       </div>

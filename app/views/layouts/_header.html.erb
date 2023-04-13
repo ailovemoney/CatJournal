@@ -33,6 +33,10 @@
                 <i class="fas fa-heart"></i> My page<% end %>
               </li>
               <li class="nav-item">
+                <%= link_to users_path, class: 'nav-link' do %>
+                <i class="fas fa-users"></i> User<% end %>
+              </li>
+              <li class="nav-item">
                 <%= link_to posts_path, class: 'nav-link' do %>
                 <i class="fas fa-list"></i> Journals<% end %>
               </li>
