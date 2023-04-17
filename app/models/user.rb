@@ -6,13 +6,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # postモデルと1:N (1側)
   has_many :posts, dependent: :destroy
-  # commentモデルと1:N (1側)
   has_many :post_comments, dependent: :destroy
-  # favorite(いいね機能)
   has_many :favorites, dependent: :destroy
-  # プロフィール画像を持たせる
   has_one_attached :profile_image
   # 通知機能。activeは自分からの通知、passiveは相手からの通知。
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy

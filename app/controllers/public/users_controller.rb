@@ -3,13 +3,13 @@
 class Public::UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
   before_action :is_matching_login_user, only: [:edit, :update]
-  
+
   def index
     @users = User.page(params[:page]).order(created_at: :desc)
     @user = current_user
     @post = Post.new
   end
-  
+
   def show
     @user = User.find(params[:id])
     @post = Post.new
@@ -61,7 +61,7 @@ class Public::UsersController < ApplicationController
       redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
     end
   end
-  
+
   # ユーザーがURLから他ユーザーへの編集ページに飛ぼうとしても飛べないようにする記述
   def is_matching_login_user
     user = User.find(params[:id])

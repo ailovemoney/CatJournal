@@ -9,7 +9,7 @@
       <%= render 'user_profile', user: @user %>
 
       <div class="edit-btn">
-        <% if @post.user == current_user %>
+        <% if @user == current_user %>
           <!--ゲストログインの場合は非表示-->
           <% if @user.name != "guestuser" %>
             <!--編集ページへのリンク-->
