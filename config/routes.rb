@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  namespace :public do
+    get 'relationships/following'
+    get 'relationships/followers'
+  end
   # ユーザー用 / コントローラーの指定と余分なルーティングの削除
   devise_for :users, skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -37,6 +41,9 @@ Rails.application.routes.draw do
       member do
         get :favorites
       end
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'follower'
     end
     resources :genres, only: [:show]
     resources :posts do
