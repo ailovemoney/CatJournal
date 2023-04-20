@@ -43,7 +43,7 @@ Rails.application.routes.draw do
       end
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
-      get 'followers' => 'relationships#followers', as: 'follower'
+      get 'followers' => 'relationships#followers', as: 'followers'
     end
     resources :genres, only: [:show]
     resources :posts do
