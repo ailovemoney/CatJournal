@@ -24,7 +24,7 @@ class Post < ApplicationRecord
   # 存在していればtrue、なければfalseで返す。
   # 管理者でログインしている場合にエラーが出るのでif文で条件追記。
   def favorited_by?(user)
-    # userログインをしているかどうかの
+    # userログインをしているかどうかの判断
     if user.present?
       favorites.exists?(user_id: user.id)
     else
@@ -34,7 +34,7 @@ class Post < ApplicationRecord
   end
 
   # コメント機能
-  # コメントしている場合、一覧でアイコンを変えるための
+  # コメントしている場合、一覧でアイコンを変えるための記述
   def comment_by?(user)
     if user.present?
       post_comments.exists?(user_id: user.id)
