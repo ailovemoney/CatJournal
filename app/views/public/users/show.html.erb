@@ -62,7 +62,7 @@
         </div>
         <div class="col text-right">
           <!--新規投稿ページへのリンク-->
-          <% if @post.user == current_user %>
+          <% if @user == current_user %>
             <%= link_to new_post_path do %>
               <button type="button" class="btn btn-info rounded-circle p-0", style="width:2rem;height:2rem;">＋</button>
             <% end %>

@@ -13,14 +13,12 @@ class Public::RelationshipsController < ApplicationController
   end
 
   # フォロー一覧
-  def following
-    @user = User.find(params[:user_id])
-    @users = @user.followings
+  def followings
+    @users = current_user.followings
   end
 
   # フォロワー一覧
   def followers
-    @user = User.find(params[:user_id])
-    @users = @user.followers
+    @users = current_user.followers
   end
 end
