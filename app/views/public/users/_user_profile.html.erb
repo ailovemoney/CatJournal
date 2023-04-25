@@ -1,5 +1,7 @@
 <div class="image">
-<%= image_tag user.get_profile_image, class: "profile_image" %>
+  <%= link_to user_path(user.id) do %>
+    <%= image_tag user.get_profile_image, class: "profile_image" %>
+  <% end %>
 </div>
 <table class="table table-striped">
   <tr>

@@ -7,7 +7,10 @@
     <div class="col-md-3 mt-2">
       <!--ユーザープロフィール-->
       <%= render 'user_profile', user: @user %>
-
+      <div class="pb-3">
+        <%= link_to "フォロー #{@user.followings.count}", user_followings_path(@user), class: "text-secondary" %> ,
+        <%= link_to "フォロワー #{@user.followers.count}", user_followers_path(@user), class: "text-secondary" %>
+      </div>
       <div class="edit-btn">
         <!--ゲストログインの場合は非表示-->
         <% if @user.name != "guestuser" %>
@@ -22,6 +25,17 @@
         <%= link_to favorites_user_path(@user) do %>
           <button type="button" class="btn btn-outline-danger rounded-circle", style="width:3rem;height:3rem;">
             <i class="fas fa-heart"></i>
+          </button>
+        <% end %>
+        <!--フォロー、フォロワー一覧へのリンク-->
+        <%= link_to user_followings_path(@user) do %>
+          <button type="button" class="btn btn-outline-warning rounded-circle", style="width:3rem;height:3rem;">
+            <i class="fas fa-kiss-wink-heart"></i>
+          </button>
+        <% end %>
+        <%= link_to user_followers_path(@user) do %>
+          <button type="button" class="btn btn-outline-info rounded-circle", style="width:3rem;height:3rem;">
+            <i class="fas fa-hand-holding-heart"></i>
           </button>
         <% end %>
       </div>

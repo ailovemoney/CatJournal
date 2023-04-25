@@ -8,7 +8,7 @@
     </div>
     <!--右側のページ-->
     <div class="col-md-9 offset-md-1 py-4">
-      <% if current_user.followers.count > 0 %>
+      <% if @user.followers.count > 0 %>
         <table class="table">
           <tr>
             <th></th>
@@ -18,8 +18,12 @@
           </tr>
           <% @users.each do |user| %>
           <tr>
-            <td></td>
-            <td><%= user.name %></td>
+            <td><%= image_tag user.get_profile_image, class: "profile_image" %></td>
+            <td class="text-truncate" style="max-width: 300px;">
+              <%= link_to user_path(user.id), class: "text-decoration-none text-info font-weight-bold" do %>
+                <%= user.name %>
+              <% end %>
+            </td>
             <td><%= user.followings.count %></td>
             <td><%= user.followers.count %></td>
           </tr>
