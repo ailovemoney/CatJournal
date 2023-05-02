@@ -8,6 +8,7 @@ class Admin::GenresController < ApplicationController
   def create
     @genre = Genre.new(genre_params)
     if @genre.save
+      flash[:notice] = "投稿が成功しました。"
       redirect_to request.referer
     else
       @genres = Genre.all
