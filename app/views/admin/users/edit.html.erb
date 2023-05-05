@@ -26,9 +26,9 @@
           <th class="p-3">ステータス</th>
           <td class="p-3">
             <%= f.radio_button :is_deleted, :false, checked: true %>
-            <%= f.label :is_deleted_false, '有効　', {value: :false} %>
+            <%= f.label :is_deleted, '有効　', {value: :false} %>
             <%= f.radio_button :is_deleted, :true %>
-            <%= f.label :is_deleted_true, '退会', {value: :true} %>
+            <%= f.label :is_deleted, '退会', {value: :true} %>
           </td>
         </tr>
         <tr>
